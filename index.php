@@ -17,7 +17,7 @@
       }
     }
 
-    $result = $connection->query("SELECT * FROM workouts ORDER BY ID DESC LIMIT 3");
+    $result = $connection->query("SELECT * FROM workouts ORDER BY ID DESC LIMIT 4");
       $newPosts = array();
       while ($row = $result->fetch_assoc()){
         array_push($newPosts, $row);
@@ -45,7 +45,6 @@
       <h1><?php echo $totalTime; ?></h1>
       <div class="stats" id="workoutAmount">
         <p>Liczba treningów</p>
-
           <div class="single-data" value = <?php echo $users[0]["workout_num"] ?>>
             <span></span>
             <p>K</p>
@@ -83,10 +82,9 @@
             <p>M</p>
           </div>
       </div>
-    </div>
+
     <div class="stats" id="timeSpent">
       <p>Czas treningów</p>
-
         <div class="single-data" value = <?php echo $users[0]["workout_time"] ?>>
           <span></span>
           <p>K</p>
@@ -123,6 +121,7 @@
           <span></span>
           <p>M</p>
         </div>
+      </div>
     </div>
     <div id="latest-workouts">
       <div class="post">
@@ -132,8 +131,8 @@
              <p>Typ treningu <br> <span><?php echo $newPosts[0]['Type']; ?></span> </p>
              <p>Czas <br> <span><?php echo $newPosts[0]['Time_min'] ?></span> </p>
          </div>
-         <p> <?php echo $newPosts[0]['Description']; ?></p>
-         <p> <?php echo $newPosts[0]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $newPosts[0]['Description']; ?></p>
+         <p class="post-date"> <?php echo $newPosts[0]['Date'] ?> </p>
       </div>
 
       <div class="post">
@@ -143,8 +142,8 @@
              <p>Typ treningu <br> <span><?php echo $newPosts[1]['Type']; ?></span> </p>
              <p>Czas <br> <span><?php echo $newPosts[1]['Time_min'] ?></span> </p>
          </div>
-         <p> <?php echo $newPosts[1]['Description']; ?></p>
-         <p> <?php echo $newPosts[1]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $newPosts[1]['Description']; ?></p>
+         <p class="post-date"> <?php echo $newPosts[1]['Date'] ?> </p>
       </div>
 
       <div class="post">
@@ -154,8 +153,19 @@
              <p>Typ treningu <br> <span><?php echo $newPosts[2]['Type']; ?></span> </p>
              <p>Czas <br> <span><?php echo $newPosts[2]['Time_min'] ?></span> </p>
          </div>
-         <p> <?php echo $newPosts[2]['Description']; ?></p>
-         <p> <?php echo $newPosts[2]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $newPosts[2]['Description']; ?></p>
+         <p class="post-date"> <?php echo $newPosts[2]['Date'] ?> </p>
+      </div>
+
+      <div class="post">
+        <img src="" alt="Imie">
+        <h3><?php echo $newPosts[3]['Owner'] ?></h3>
+        <div>
+             <p>Typ treningu <br> <span><?php echo $newPosts[3]['Type']; ?></span> </p>
+             <p>Czas <br> <span><?php echo $newPosts[3]['Time_min'] ?></span> </p>
+         </div>
+         <p class="post-description"> <?php echo $newPosts[3]['Description']; ?></p>
+         <p class="post-date"> <?php echo $newPosts[3]['Date'] ?> </p>
       </div>
     </div>
     <div id="logForm">

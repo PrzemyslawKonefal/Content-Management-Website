@@ -51,8 +51,19 @@ $(document).ready(function(){
     name = name.toLowerCase();
     const path = `./img/characters/${name}/main.jpg`;
     post.find('img').attr('src', path);
-    console.log(2);
   }
-  for(let i = 0; i<3; i++)  placeImageToPost(i);
+  for(let i = 0; i<4; i++)  placeImageToPost(i);
+
+const countAnimation = function(JquerySelector, time){
+   let value = JquerySelector.html();
+   let valueCounter = 0;
+   let frameChangeTime = time/value
+   let interval = setInterval(function(){
+       JquerySelector.text(valueCounter);
+       if(valueCounter >= value) clearInterval(interval);
+       valueCounter++;
+   }, frameChangeTime);
+}
+for(let i = 0; i<2; i++) countAnimation($('h1').eq(i), 3000);
 
 });

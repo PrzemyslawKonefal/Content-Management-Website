@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 $main-colors: (
-  first: #d5d5d5,
-  second: #f6694a,
+  first: #e3e3e3,
+  second: #d7d6d6,
+  third: #9ad3de,
+  fourth: #89bdd3
 );
 %flex-typical{
   display: flex;
@@ -18,20 +21,26 @@ body{
   margin: 0;
   overflow-x: hidden;
   background: map-get($main-colors, first);
+  font-family: 'Didact Gothic', sans-serif;
 }
 #landing{
       @extend %flex-typical;
       flex-direction: column;
       margin: 10px;
       position: relative;
+
+      h1{
+        font-size: 7em;
+        color: map-get($main-colors, fourth);
+      }
 }
 .stats{
   position: relative;
   width: calc(100% - 40px);
   max-width: 1000px;
-  margin: auto;
   margin-bottom: 20px;
   height: 350px;
+  padding-top: 10px;
   border-bottom: 1px solid #000;
   border-left: 1px solid #000;
   @extend %flex-typical;
@@ -53,7 +62,7 @@ body{
   position: relative;
   height: 5px;
   width: calc(1/9 * 95%);
-  background: #95de43;
+  background: map-get($main-colors, third);
   border-radius: 5px 5px 0 0;
   transition: 3.5s ease;
   span{
@@ -143,6 +152,7 @@ body{
   padding: 20px 0;
   textarea{
     height: 150px;
+    resize: none;
   }
   input, textarea{
     width: calc(100% - 18px);
@@ -157,17 +167,21 @@ body{
 }
 #latest-workouts{
   @extend %flex-typical;
-  align-items: flex-start;
+  flex-direction: column;
   margin-top: 30px;
 }
 .post{
   @extend %flex-typical;
   flex-direction: column;
-  padding: 10px 5px;
-  width: 300px;
+  padding: 10px 10px;
+  width: calc(100% - 20px);
+  max-width: 500px;
   margin: 5px 0;
   overflow: hidden;
-  box-shadow: 0 0 8px #000;
+  box-sizing: border-box;
+  border: 2px solid map-get($main-colors, fourth);
+  border-radius: 8px;
+  background: map-get($main-colors, second);
   img{
     width: 180px;
     height: 180px;
@@ -178,14 +192,35 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-around;
+    background: map-get($main-colors, first);
+    text-align: center;
+    border: 2px solid map-get($main-colors, third);
   }
   p{
     font-size: 1.2em;
     span{
 
     }
-    &:last-of-type{
-      font-size: 0.8em;
-    }
   }
+}
+.post-description{
+  padding: 10px;
+  background: map-get($main-colors, first);
+  border: 2px solid map-get($main-colors, third);
+  border-top: none;
+  border-bottom: none;
+  margin: 0;
+  width: 100%;
+}
+.post-date{
+  font-size: 0.8em !important;
+  width: 100%;
+  background: map-get($main-colors, first);
+  border: 2px solid map-get($main-colors, third);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  padding-top: 10px;
 }

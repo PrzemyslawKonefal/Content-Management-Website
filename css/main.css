@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Didact+Gothic");
 #landing, .stats, #characters, #logForm, #posting-box, #latest-workouts, .post {
   display: flex;
   flex-wrap: wrap;
@@ -13,20 +14,24 @@ body {
   width: 100%;
   margin: 0;
   overflow-x: hidden;
-  background: #d5d5d5; }
+  background: #e3e3e3;
+  font-family: 'Didact Gothic', sans-serif; }
 
 #landing {
   flex-direction: column;
   margin: 10px;
   position: relative; }
+  #landing h1 {
+    font-size: 7em;
+    color: #89bdd3; }
 
 .stats {
   position: relative;
   width: calc(100% - 40px);
   max-width: 1000px;
-  margin: auto;
   margin-bottom: 20px;
   height: 350px;
+  padding-top: 10px;
   border-bottom: 1px solid #000;
   border-left: 1px solid #000;
   flex-wrap: nowrap;
@@ -44,7 +49,7 @@ body {
   position: relative;
   height: 5px;
   width: calc(1/9 * 95%);
-  background: #95de43;
+  background: #9ad3de;
   border-radius: 5px 5px 0 0;
   transition: 3.5s ease; }
   .single-data span {
@@ -76,7 +81,7 @@ body {
   .character p {
     width: 100%;
     text-align: center;
-    background: #f6694a;
+    background: #d7d6d6;
     height: 40px;
     line-height: 40px;
     font-size: 1.3em; }
@@ -120,7 +125,8 @@ body {
   width: 300px;
   padding: 20px 0; }
   #posting-box textarea {
-    height: 150px; }
+    height: 150px;
+    resize: none; }
   #posting-box input, #posting-box textarea {
     width: calc(100% - 18px); }
 
@@ -132,16 +138,20 @@ body {
   cursor: pointer; }
 
 #latest-workouts {
-  align-items: flex-start;
+  flex-direction: column;
   margin-top: 30px; }
 
 .post {
   flex-direction: column;
-  padding: 10px 5px;
-  width: 300px;
+  padding: 10px 10px;
+  width: calc(100% - 20px);
+  max-width: 500px;
   margin: 5px 0;
   overflow: hidden;
-  box-shadow: 0 0 8px #000; }
+  box-sizing: border-box;
+  border: 2px solid #89bdd3;
+  border-radius: 8px;
+  background: #d7d6d6; }
   .post img {
     width: 180px;
     height: 180px;
@@ -150,10 +160,32 @@ body {
   .post div {
     width: 100%;
     display: flex;
-    justify-content: space-around; }
+    justify-content: space-around;
+    background: #e3e3e3;
+    text-align: center;
+    border: 2px solid #9ad3de; }
   .post p {
     font-size: 1.2em; }
-    .post p:last-of-type {
-      font-size: 0.8em; }
+
+.post-description {
+  padding: 10px;
+  background: #e3e3e3;
+  border: 2px solid #9ad3de;
+  border-top: none;
+  border-bottom: none;
+  margin: 0;
+  width: 100%; }
+
+.post-date {
+  font-size: 0.8em !important;
+  width: 100%;
+  background: #e3e3e3;
+  border: 2px solid #9ad3de;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  padding-top: 10px; }
 
 /*# sourceMappingURL=main.css.map */
