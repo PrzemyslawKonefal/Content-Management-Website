@@ -1,0 +1,159 @@
+#landing, .stats, #characters, #logForm, #posting-box, #latest-workouts, .post {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center; }
+
+html {
+  height: 100%;
+  width: 100%; }
+
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background: #d5d5d5; }
+
+#landing {
+  flex-direction: column;
+  margin: 10px;
+  position: relative; }
+
+.stats {
+  position: relative;
+  width: calc(100% - 40px);
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 20px;
+  height: 350px;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  flex-wrap: nowrap;
+  align-items: flex-end; }
+  .stats > p {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: rotateZ(-90deg) translate(20px, -90px);
+    font-size: 1.2em; }
+  .stats:nth-of-type(2) > p {
+    left: 6px; }
+
+.single-data {
+  position: relative;
+  height: 5px;
+  width: calc(1/9 * 95%);
+  background: #95de43;
+  border-radius: 5px 5px 0 0;
+  transition: 3.5s ease; }
+  .single-data span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8em; }
+  .single-data > p {
+    margin: 0;
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    text-align: center; }
+
+#characters {
+  margin: 35px 5px; }
+
+.character {
+  display: block;
+  width: 280px;
+  cursor: pointer; }
+  .character:hover img {
+    filter: brightness(70%); }
+  .character img {
+    height: 185px;
+    width: 100%;
+    transition: .3s ease; }
+  .character p {
+    width: 100%;
+    text-align: center;
+    background: #f6694a;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.3em; }
+
+#logForm {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column; }
+  #logForm a {
+    color: inherit; }
+    #logForm a:hover {
+      text-decoration: none; }
+  #logForm form {
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    position: relative;
+    bottom: -200px; }
+    #logForm form * {
+      display: block;
+      margin: auto;
+      text-align: center; }
+
+#loginTrigger, .logged-option {
+  position: relative;
+  bottom: -200px;
+  cursor: pointer; }
+
+#posting-box {
+  flex-direction: column;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0 0 70px #000;
+  height: 400px;
+  width: 300px;
+  padding: 20px 0; }
+  #posting-box textarea {
+    height: 150px; }
+  #posting-box input, #posting-box textarea {
+    width: calc(100% - 18px); }
+
+#close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1.5em;
+  cursor: pointer; }
+
+#latest-workouts {
+  align-items: flex-start;
+  margin-top: 30px; }
+
+.post {
+  flex-direction: column;
+  padding: 10px 5px;
+  width: 300px;
+  margin: 5px 0;
+  overflow: hidden;
+  box-shadow: 0 0 8px #000; }
+  .post img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 4px 0 20px #000; }
+  .post div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around; }
+  .post p {
+    font-size: 1.2em; }
+    .post p:last-of-type {
+      font-size: 0.8em; }
+
+/*# sourceMappingURL=main.css.map */

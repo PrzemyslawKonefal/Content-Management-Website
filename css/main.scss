@@ -1,0 +1,191 @@
+$main-colors: (
+  first: #d5d5d5,
+  second: #f6694a,
+);
+%flex-typical{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  background: map-get($main-colors, first);
+}
+#landing{
+      @extend %flex-typical;
+      flex-direction: column;
+      margin: 10px;
+      position: relative;
+}
+.stats{
+  position: relative;
+  width: calc(100% - 40px);
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 20px;
+  height: 350px;
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  @extend %flex-typical;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  >p{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: rotateZ(-90deg) translate(20px, -90px);
+    font-size: 1.2em;
+  }
+  &:nth-of-type(2) > p{
+    left: 6px;
+  }
+}
+
+.single-data{
+  position: relative;
+  height: 5px;
+  width: calc(1/9 * 95%);
+  background: #95de43;
+  border-radius: 5px 5px 0 0;
+  transition: 3.5s ease;
+  span{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8em;
+  }
+  >p{
+    margin: 0;
+    position: absolute;
+    bottom: -20px;
+    width: 100%;
+    text-align: center;
+  }
+}
+#characters{
+  @extend %flex-typical;
+  margin: 35px 5px;
+}
+.character{
+      display: block;
+      width: 280px;
+      cursor: pointer;
+
+      &:hover img{
+        filter:brightness(70%);
+      }
+      img{
+        height: 185px;
+        width: 100%;
+        transition: .3s ease;
+      }
+      p{
+        width: 100%;
+        text-align: center;
+        background: map-get($main-colors, second);
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.3em;
+      }
+}
+#logForm{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  @extend %flex-typical;
+  flex-direction: column;
+  a{
+    color: inherit;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+  form{
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    position: relative;
+    bottom:-200px;
+    *{
+      display: block;
+      margin: auto;
+      text-align: center;
+    }
+  }
+}
+#loginTrigger, .logged-option{
+  position: relative;
+  bottom:-200px;
+  cursor: pointer;
+}
+#posting-box{
+  @extend %flex-typical;
+  flex-direction: column;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  box-shadow: 0 0 70px #000;
+  height: 400px;
+  width: 300px;
+  padding: 20px 0;
+  textarea{
+    height: 150px;
+  }
+  input, textarea{
+    width: calc(100% - 18px);
+  }
+}
+#close{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+#latest-workouts{
+  @extend %flex-typical;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+.post{
+  @extend %flex-typical;
+  flex-direction: column;
+  padding: 10px 5px;
+  width: 300px;
+  margin: 5px 0;
+  overflow: hidden;
+  box-shadow: 0 0 8px #000;
+  img{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 4px 0 20px #000;
+  }
+  div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  p{
+    font-size: 1.2em;
+    span{
+
+    }
+    &:last-of-type{
+      font-size: 0.8em;
+    }
+  }
+}
