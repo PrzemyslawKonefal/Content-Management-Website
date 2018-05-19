@@ -173,7 +173,7 @@ body{
 .post{
   @extend %flex-typical;
   flex-direction: column;
-  padding: 10px 10px;
+  padding: 10px 0px 0px 0px;
   width: calc(100% - 20px);
   max-width: 500px;
   margin: 5px 0;
@@ -187,26 +187,39 @@ body{
     height: 180px;
     border-radius: 50%;
     box-shadow: 4px 0 20px #000;
+    border: 2px solid map-get($main-colors, first);
   }
-  div{
+  >div{
     width: 100%;
     display: flex;
     justify-content: space-around;
     background: map-get($main-colors, first);
     text-align: center;
-    border: 2px solid map-get($main-colors, third);
+    border: 2px solid map-get($main-colors, fourth);
+    border-left: none;
+    border-right: none;
   }
   p{
     font-size: 1.2em;
-    span{
-
+  }
+  form{
+    width: 100%;
+    background: map-get($main-colors, first);
+    border-top: 2px solid map-get($main-colors, fourth);
+    >input:last-of-type{
+      display: none;
+    }
+    h6{
+      text-align: center;
+      border-bottom: 2px solid map-get($main-colors, fourth);
+      margin: 0;
+      padding: 3px 0;
     }
   }
 }
 .post-description{
   padding: 10px;
   background: map-get($main-colors, first);
-  border: 2px solid map-get($main-colors, third);
   border-top: none;
   border-bottom: none;
   margin: 0;
@@ -216,11 +229,97 @@ body{
   font-size: 0.8em !important;
   width: 100%;
   background: map-get($main-colors, first);
-  border: 2px solid map-get($main-colors, third);
-  border-top: none;
-  border-radius: 0 0 8px 8px;
+  border-top: 1px solid map-get($main-colors, fourth);
   text-align: center;
   height: 100%;
   margin: 0;
-  padding-top: 10px;
+  padding: 5px 0;
+}
+.disabled-nick{
+  pointer-events:none;
+  background: inherit;
+  color: map-get($main-colors, fourth);
+}
+.comment-addition{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5px;
+  input, textarea{
+    border: none;
+    border-radius: 20px;
+    padding-left: 5px;
+    outline: none;
+  }
+  input{
+    width: 100px;
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+    &:first-of-type{
+      border-radius: 0;
+      border: 1px solid map-get($main-colors, fourth);
+    }
+    &:last-of-type{
+      background: map-get($main-colors, fourth);
+      color: #fff;
+      transition: .3s ease;
+      cursor: pointer;
+    }
+    &:last-of-type:hover{
+      background: #fff;
+      color:map-get($main-colors, fourth);
+      border: 1px solid map-get($main-colors, fourth);
+    }
+  }
+  textarea{
+    flex-grow: 1;
+    resize: none;
+    min-height: 70px;
+  }
+  .comment-left-box{
+    margin-right: 5px;
+  }
+}
+.inner-comments{
+  width: 100%;
+}
+.comment{
+  position: relative;
+  width: 100%;
+  background: #f0eded;
+  border-top: 1px solid map-get($main-colors, fourth);
+  &:nth-of-type(even){
+    background: #f5f5f5;
+  }
+  &:first-of-type{
+    border: none;
+  }
+  >div{
+    width: 50px;
+    margin: auto;
+    cursor: pointer;
+    transition: .3s ease;
+    &:hover{
+      filter: brightness(70%);
+    }
+  }
+}
+.comment-name{
+  top: 5px;
+  left: 5px;
+  color: #55bf0b;
+  padding: 2px 30px 2px 0px;
+  font-weight: 800;
+  text-align: left;
+}
+.comment-content{
+  text-align: left;
+  padding: 5px 10px
+}
+.thumb{
+  color: map-get($main-colors, third);
+  font-size: 25px;
+  margin: 0px 10px;
 }

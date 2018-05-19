@@ -22,8 +22,6 @@
       while ($row = $result->fetch_assoc()){
         array_push($newPosts, $row);
       }
-
-
   }
   $logged = isset($_SESSION['UserData']);
  ?>
@@ -126,47 +124,140 @@
     <div id="latest-workouts">
       <div class="post">
         <img src="" alt="Imie">
-        <h3><?php echo $newPosts[0]['Owner'] ?></h3>
+        <h3><?php $post = $newPosts[0]; echo $post['Owner'] ?></h3>
         <div>
-             <p>Typ treningu <br> <span><?php echo $newPosts[0]['Type']; ?></span> </p>
-             <p>Czas <br> <span><?php echo $newPosts[0]['Time_min'] ?></span> </p>
+             <p>Typ treningu <br> <span><?php echo $post['Type']; ?></span> </p>
+             <p>Czas <br> <span><?php echo $post['Time_min'] ?></span> </p>
          </div>
-         <p class="post-description"> <?php echo $newPosts[0]['Description']; ?></p>
-         <p class="post-date"> <?php echo $newPosts[0]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $post['Description']; ?></p>
+         <form action="scripts/server/addComment.php" method="post">
+           <h6 opened="true">Comments <i class="fas fa-angle-down"></i> </h6>
+           <div class="comment-addition">
+            <div class="comment-left-box">
+              <input type="text" name="name" value="<?php if($logged) echo $_SESSION['UserData']['nick']; ?>" class="<?php if($logged) echo "disabled-nick"; ?>" required>
+              <input type="submit" value="Dodaj">
+            </div>
+             <textarea name="content" required></textarea>
+           </div>
+           <input name="postID" value="<?php echo $post['ID']?>"></input>
+           </form>
+           <div class="comments">
+             <div class="inner-comments">
+               <?php
+                $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
+                if ($result ->num_rows >0) {
+                while ($row = $result->fetch_assoc()){
+                    echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'>".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
+                  }
+                }
+                ?>
+            </div>
+           </div>
+         <p class="post-date"> <?php echo $post['Date'] ?> </p>
       </div>
 
       <div class="post">
         <img src="" alt="Imie">
-        <h3><?php echo $newPosts[1]['Owner'] ?></h3>
+        <h3><?php $post = $newPosts[1]; echo $post['Owner'] ?></h3>
         <div>
-             <p>Typ treningu <br> <span><?php echo $newPosts[1]['Type']; ?></span> </p>
-             <p>Czas <br> <span><?php echo $newPosts[1]['Time_min'] ?></span> </p>
+             <p>Typ treningu <br> <span><?php echo $post['Type']; ?></span> </p>
+             <p>Czas <br> <span><?php echo $post['Time_min'] ?></span> </p>
          </div>
-         <p class="post-description"> <?php echo $newPosts[1]['Description']; ?></p>
-         <p class="post-date"> <?php echo $newPosts[1]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $post['Description']; ?></p>
+         <form action="scripts/server/addComment.php" method="post">
+           <h6 opened="true">Comments <i class="fas fa-angle-down"></i> </h6>
+           <div class="comment-addition">
+            <div class="comment-left-box">
+              <input type="text" name="name" value="<?php if($logged) echo $_SESSION['UserData']['nick']; ?>" class="<?php if($logged) echo "disabled-nick"; ?>" required>
+              <input type="submit" value="Dodaj">
+            </div>
+             <textarea name="content" required></textarea>
+           </div>
+           <input name="postID" value="<?php echo $post['ID']?>"></input>
+           </form>
+           <div class="comments">
+             <div class="inner-comments">
+               <?php
+                $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
+                if ($result ->num_rows >0) {
+                while ($row = $result->fetch_assoc()){
+                    echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'>".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
+                  }
+                }
+                ?>
+            </div>
+           </div>
+         <p class="post-date"> <?php echo $post['Date'] ?> </p>
       </div>
 
       <div class="post">
         <img src="" alt="Imie">
-        <h3><?php echo $newPosts[2]['Owner'] ?></h3>
+        <h3><?php $post = $newPosts[2]; echo $post['Owner'] ?></h3>
         <div>
-             <p>Typ treningu <br> <span><?php echo $newPosts[2]['Type']; ?></span> </p>
-             <p>Czas <br> <span><?php echo $newPosts[2]['Time_min'] ?></span> </p>
+             <p>Typ treningu <br> <span><?php echo $post['Type']; ?></span> </p>
+             <p>Czas <br> <span><?php echo $post['Time_min'] ?></span> </p>
          </div>
-         <p class="post-description"> <?php echo $newPosts[2]['Description']; ?></p>
-         <p class="post-date"> <?php echo $newPosts[2]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $post['Description']; ?></p>
+         <form action="scripts/server/addComment.php" method="post">
+           <h6 opened="true">Comments <i class="fas fa-angle-down"></i> </h6>
+           <div class="comment-addition">
+            <div class="comment-left-box">
+              <input type="text" name="name" value="<?php if($logged) echo $_SESSION['UserData']['nick']; ?>" class="<?php if($logged) echo "disabled-nick"; ?>" required>
+              <input type="submit" value="Dodaj">
+            </div>
+             <textarea name="content" required></textarea>
+           </div>
+           <input name="postID" value="<?php echo $post['ID']?>"></input>
+           </form>
+           <div class="comments">
+             <div class="inner-comments">
+               <?php
+                $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
+                if ($result ->num_rows >0) {
+                while ($row = $result->fetch_assoc()){
+                    echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'>".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
+                  }
+                }
+                ?>
+            </div>
+           </div>
+         <p class="post-date"> <?php echo $post['Date'] ?> </p>
       </div>
 
       <div class="post">
         <img src="" alt="Imie">
-        <h3><?php echo $newPosts[3]['Owner'] ?></h3>
+        <h3><?php $post = $newPosts[3]; echo $post['Owner'] ?></h3>
         <div>
-             <p>Typ treningu <br> <span><?php echo $newPosts[3]['Type']; ?></span> </p>
-             <p>Czas <br> <span><?php echo $newPosts[3]['Time_min'] ?></span> </p>
+             <p>Typ treningu <br> <span><?php echo $post['Type']; ?></span> </p>
+             <p>Czas <br> <span><?php echo $post['Time_min'] ?></span> </p>
          </div>
-         <p class="post-description"> <?php echo $newPosts[3]['Description']; ?></p>
-         <p class="post-date"> <?php echo $newPosts[3]['Date'] ?> </p>
+         <p class="post-description"> <?php echo $post['Description']; ?></p>
+         <form action="scripts/server/addComment.php" method="post">
+           <h6 opened="true">Comments <i class="fas fa-angle-down"></i> </h6>
+           <div class="comment-addition">
+            <div class="comment-left-box">
+              <input type="text" name="name" value="<?php if($logged) echo $_SESSION['UserData']['nick']; ?>" class="<?php if($logged) echo "disabled-nick"; ?>" required>
+              <input type="submit" value="Dodaj">
+            </div>
+             <textarea name="content" required></textarea>
+           </div>
+           <input name="postID" value="<?php echo $post['ID']?>"></input>
+           </form>
+           <div class="comments">
+             <div class="inner-comments">
+               <?php
+                $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
+                if ($result ->num_rows >0) {
+                while ($row = $result->fetch_assoc()){
+                    echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'>".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
+                  }
+                }
+                ?>
+            </div>
+           </div>
+         <p class="post-date"> <?php echo $post['Date'] ?> </p>
       </div>
+
     </div>
     <div id="logForm">
       <?php

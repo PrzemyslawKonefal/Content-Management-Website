@@ -66,4 +66,33 @@ const countAnimation = function(JquerySelector, time){
 }
 for(let i = 0; i<2; i++) countAnimation($('h1').eq(i), 3000);
 
+//textareas automatic height
+$('textarea').each(function () {
+      this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+    }).on('input', function () {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    //Add name for not logged users in comments section
+    $('.comment-left-box').each(function() {
+      let input = $(this).find('input').eq(0);
+      if(input.attr('value') === ''){
+        input.attr('value', 'Anonim');
+      }
+    });
+
+    //toggle comments visibility
+    $('.post').find('h6').click(function(){
+      if($(this).attr('opened') === "true") {
+        $(this).parent().next().slideUp();
+        $(this).next().slideUp();
+        $(this).attr('opened', 'false');
+      }
+      else{
+        $(this).parent().next().slideDown();
+        $(this).next().slideDown();
+        $(this).attr('opened', 'true');
+      }
+    })
 });

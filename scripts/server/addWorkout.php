@@ -7,7 +7,9 @@ if (!isset($_POST['time'])) {
 require_once"connect.php";
 $time = $_POST['time'];
 $type = $_POST['type'];
+$type = htmlentities($type, ENT_QUOTES, "UTF-8");
 $description = $_POST['description'];
+$description = htmlentities($description, ENT_QUOTES, "UTF-8");
 $id = $_SESSION['UserData']['ID'];
 $owner = $_SESSION['UserData']['nick'];
 $connection = @new mysqli($host, $db_user, $db_password, $db_name);
@@ -15,7 +17,7 @@ $connection = @new mysqli($host, $db_user, $db_password, $db_name);
       echo "Error: ".$connection->connect_errno;
     }
     else{
-      if ($connection->query("INSERT INTO workouts VALUES (NULL, '$time', '$type', '$description', now(), '$id', '$owner')"));{
+      if ($connection->query("INSERT INTO workouts VALUES (NULL, '$time', '$type', '$description', now(), '$id', '$owner')")) {
             $result = $connection->query("SELECT workout_num, workout_time FROM users WHERE ID = {$id}");
             $row = $result->fetch_assoc();
             $time += $row['workout_time'];
