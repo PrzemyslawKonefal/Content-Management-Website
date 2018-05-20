@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+
   const trainingsCount = [];
   const timeCount = [];
   const userWorkoutAmount = $('#workoutAmount .single-data');
@@ -57,14 +58,14 @@ $(document).ready(function(){
 const countAnimation = function(JquerySelector, time){
    let value = JquerySelector.html();
    let valueCounter = 0;
-   let frameChangeTime = time/value
+   let frameChangeTime = time/value;
    let interval = setInterval(function(){
        JquerySelector.text(valueCounter);
        if(valueCounter >= value) clearInterval(interval);
        valueCounter++;
    }, frameChangeTime);
 }
-for(let i = 0; i<2; i++) countAnimation($('h1').eq(i), 3000);
+for(let i = 0; i<2; i++) countAnimation($('h1').eq(i), 2000);
 
 //textareas automatic height
 $('textarea').each(function () {

@@ -147,7 +147,9 @@
                 $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
                 if ($result ->num_rows >0) {
                 while ($row = $result->fetch_assoc()){
-                    echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'>".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
+                    if ($row['Is_Verified']) $Verified = 'verified';
+                    else $Verified = '';
+                    echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'".$Verified.">".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
                   }
                 }
                 ?>
