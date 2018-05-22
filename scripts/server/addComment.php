@@ -20,7 +20,7 @@ if (!isset($_POST['postID'])) {
   }
   else{
     $connection->query("INSERT INTO comments VALUES (NULL, '$name', '$content', '0', '$isVerified', '$postID', now())");
-    header('Location: ../../index.php');
+    header("Location: ../../".$_SESSION['location']);
   }
 
 ?>

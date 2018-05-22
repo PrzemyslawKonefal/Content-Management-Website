@@ -2,8 +2,8 @@
 $main-colors: (
   first: #e3e3e3,
   second: #d7d6d6,
-  third: #9ad3de,
-  fourth: #89bdd3
+  third: #3ec4fc,
+  fourth: #3eb3e4
 );
 %flex-typical{
   display: flex;
@@ -23,10 +23,14 @@ body{
   background: map-get($main-colors, first);
   font-family: 'Didact Gothic', sans-serif;
 }
+nav{
+  padding: 40px 10px;
+  background: map-get($main-colors, fourth);
+}
 #landing{
       @extend %flex-typical;
       flex-direction: column;
-      margin: 10px;
+      margin: 80px;
       position: relative;
 
       h1{
@@ -78,6 +82,7 @@ body{
     bottom: -20px;
     width: 100%;
     text-align: center;
+    font-size: 0.5em;
   }
 }
 #characters{
@@ -109,7 +114,9 @@ body{
 #logForm{
   position: fixed;
   bottom: 0;
+  z-index: -1;
   left: 50%;
+  background: #55bf0b;
   transform: translateX(-50%);
   @extend %flex-typical;
   flex-direction: column;
@@ -132,10 +139,26 @@ body{
     }
   }
 }
-#loginTrigger, .logged-option{
-  position: relative;
-  bottom:-200px;
+.nav-link{
+  color: map-get($main-colors, first);
+  letter-spacing: 2px;
+  font-size: 1.4em;
+  transition: .3s ease;
+  &:hover{
+    color: #2a20f5;
+  }
+}
+#loginTrigger{
   cursor: pointer;
+}
+#add-post{
+  cursor: pointer;
+  color: #fff;
+  text-shadow: 1px 1px #000;
+  margin: 0 10px;
+  &:hover{
+    color: #2a20f5;
+  }
 }
 #posting-box{
   @extend %flex-typical;
@@ -186,8 +209,7 @@ body{
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    box-shadow: 4px 0 20px #000;
-    border: 2px solid map-get($main-colors, first);
+    box-shadow: 0px 0 20px #000;
   }
   >div{
     width: 100%;
@@ -331,4 +353,92 @@ body{
   color: map-get($main-colors, third);
   font-size: 25px;
   margin: 0px 10px;
+}
+main{
+  width: 100%;
+  height: 500px;
+  box-shadow: 0 5px 20px #000;
+  background: #3eb3e4;
+  @extend %flex-typical;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  >img{
+    width: 300px;
+    height: 500px;
+  }
+}
+#user-stats{
+  @extend %flex-typical;
+  width: 100%;
+}
+.stat{
+  text-align: center;
+  color: map-get($main-colors, first);
+  h3{
+    margin-bottom: 55px;
+  }
+  span{
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 50px;
+    font-size: 1.5em;
+    border: 1px solid #000;
+    height: 200px;
+  }
+}
+#profiles{
+  padding-top: 20px;
+  border-top: 8px solid #3eb3e4;
+  border-radius: 7px 7px 0 0;
+  margin: auto;
+  width: calc(100% - 20px);
+  a{
+    margin: 20px 10px;
+    box-shadow: 0 0 6px #000;
+    transition: .4s ease-out;
+    &:hover{
+      box-shadow: 0 0 30px #000;
+      filter: brightness(120%);
+    }
+  }
+}
+#inner-profiles{
+  padding-bottom: 20px;
+  margin: auto;
+  width: 70%;
+  border-bottom: 8px solid #3eb3e4;
+  border-radius: 0 0 7px 7px;
+  min-width: 300px;
+  img{
+    width: 180px;
+    height:  180px;
+  }
+}
+#scroll-box{
+  width: 100%;
+  @extend %flex-typical;
+  justify-content: center;
+  position: relative;
+}
+#show-profiles{
+  display: block;
+  margin: 15px auto;
+  padding: 10px 50px;
+  font-size: 1.5em;
+  border-radius: 15px;
+  background: #3eb3e4;
+  letter-spacing: 8px;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: .3s ease-out;
+
+  &:hover{
+    background: #2f8db4;
+  }
+}
+.toggle-arrow{
+  transition: .3s ease;
 }

@@ -29,13 +29,12 @@ $(document).ready(function(){
   const trigger = $("#loginTrigger");
   const form = $("#logForm form");
   trigger.click(function(){
-    if(trigger.css("bottom") === "0px") {
-      trigger.animate({"bottom": "-200px"}, 1000);
-      form.animate({"bottom": "-200px"}, 1000);
+    if(form.css("bottom") === "0px") {
+      form.animate({"bottom": "-200px", "opacity": "0"}, 1000);
     }
     else{
-      trigger.animate({"bottom": "0px"}, 1000);
-      form.animate({"bottom": "0px"}, 1000);
+      $("#logForm").css('z-index', '10');
+      form.animate({"bottom": "0px", "opacity": "1"}, 1000);
     }
   })
   const addPost = $("#add-post");
@@ -83,7 +82,7 @@ $('textarea').each(function () {
       }
     });
 
-    //toggle comments visibility
+    //toggle comments and profiles visibility
     $('.post').find('h6').click(function(){
       if($(this).attr('opened') === "true") {
         $(this).parent().next().slideUp();
@@ -96,4 +95,23 @@ $('textarea').each(function () {
         $(this).attr('opened', 'true');
       }
     })
+    $('#show-profiles').click(function(){
+        if($(this).attr('opened') === "true"){
+          $('#profiles').slideUp();
+          $(this).attr('opened', 'false');
+          $(this).find('.toggle-arrow').css('transform', 'rotateZ(0)');
+        }
+        else{
+          $('#profiles').slideDown();
+          $(this).attr('opened', 'true');
+          $(this).find('.toggle-arrow').css('transform', 'rotateZ(180deg)');
+        }
+    })
+
+    // hide comments and profiles sections by deafault
+    $('.post').find('h6').each(function(){
+      $(this).parent().next().hide();
+      $(this).next().hide();
+    })
+    $('#profiles').hide();
 });
