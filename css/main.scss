@@ -260,7 +260,7 @@ nav{
   border: 2px solid map-get($main-colors, fourth);
   border-radius: 8px;
   background: map-get($main-colors, second);
-  img{
+  >img{
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -407,7 +407,12 @@ nav{
 .thumb{
   color: map-get($main-colors, third);
   font-size: 25px;
-  margin: 0px 10px;
+  margin: 5px 10px;
+  height: 20px;
+  cursor: pointer;
+  &:hover{
+    filter: drop-shadow(2px 2px 10px map-get($main-colors, third));
+  }
 }
 main{
   width: 100%;

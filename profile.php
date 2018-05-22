@@ -130,13 +130,14 @@
           $post = $userPosts[$i];
           $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
             echo '<div class="post">
-              <img src="" alt="Imie">
+              <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
               <h3>'.$post['Owner'].'</h3>
               <div>
                    <p>Typ treningu <br> <span>'.$post['Type'].'</span> </p>
                    <p>Czas <br> <span>'.$post['Time_min'].'</span> </p>
                </div>
-               <p class="post-description">'.$post['Description'].'</p>
+               <p class="post-description">'.$post['Description'].'
+               <br><img class="thumb" src="img/like.png"><span>'.$post["Likes"].'</span></p>
                <form action="scripts/server/addComment.php" method="post">
                  <h6 opened="false">Comments <i class="fas fa-angle-down"></i> </h6>
                  <div class="comment-addition">
@@ -158,7 +159,7 @@
            while ($row = $result->fetch_assoc()){
                if ($row['Is_Verified']) $Verified = 'verified';
                else $Verified = '';
-               echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'".$Verified.">".$row['Name']."</span>".$row['Content']."</p><div><i class='far fa-thumbs-up thumb'></i><span>".$row['Likes']."</span></div></div>";
+               echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'".$Verified.">".$row['Name']."</span>".$row['Content']."</p><div><img class='thumb' src ='img/like.png'><span>".$row['Likes']."</span><data value = '".$row['Comments_ID']."'></data></div></div>";
              }
            }
            echo '</div>
@@ -181,6 +182,7 @@
           <input type="submit" value="Zaloguj">
       </form>
     </div>
+    <data value="<?php if($logged) echo '1' ?>"></data>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>

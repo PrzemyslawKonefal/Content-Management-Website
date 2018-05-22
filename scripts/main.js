@@ -59,15 +59,6 @@ $(document).ready(function(){
     }
   })
 
-  const placeImageToPost = function(index){
-    const post = $('.post').eq(index);
-    let name = post.find('h3').html();
-    name = name.toLowerCase();
-    const path = `./img/characters/${name}/main.jpg`;
-    post.find('img').attr('src', path);
-  }
-  for(let i = 0; i<4; i++)  placeImageToPost(i);
-
 const countAnimation = function(JquerySelector, time){
    let value = JquerySelector.html();
    let valueCounter = 0;
@@ -120,12 +111,36 @@ $('textarea').each(function () {
           $(this).attr('opened', 'true');
           $(this).find('.toggle-arrow').css('transform', 'rotateZ(180deg)');
         }
+        return;
     })
 
     // hide comments and profiles sections by deafault
     $('.post').find('h6').each(function(){
       $(this).parent().next().hide();
       $(this).next().hide();
+      return;
     })
     $('#profiles').hide();
 });
+    // Like hit for comments and posts
+    $('.comment .thumb').click(function(){
+        if($('body > data').attr('value') != '1') return;
+        const id = $(this).parent().find('data').attr('value');
+        let span = $(this).parent().find('span');
+        span.html(parseInt(span.html())+1);
+        $.post('scripts/server/likePP.php', {table: "comments", commentId: id});
+        $(this).unbind('click');
+        $(this).css('cursor','auto');
+        return;
+        });
+
+    $('.post-description .thumb').click(function(){
+            if($('body > data').attr('value') != '1') return;
+            const id = $(this).parent().parent().find('input:last').attr('value');
+            let span = $(this).parent().find('span');
+            span.html(parseInt(span.html())+1);
+            $.post('scripts/server/likePP.php', {table: "workouts", commentId: id});
+            $(this).unbind('click');
+            $(this).css('cursor','auto');
+            return;
+        });

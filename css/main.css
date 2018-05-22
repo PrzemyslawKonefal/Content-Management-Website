@@ -217,7 +217,7 @@ nav {
   border: 2px solid #3eb3e4;
   border-radius: 8px;
   background: #d7d6d6; }
-  .post img {
+  .post > img {
     width: 180px;
     height: 180px;
     border-radius: 50%;
@@ -346,7 +346,11 @@ nav {
 .thumb {
   color: #3ec4fc;
   font-size: 25px;
-  margin: 0px 10px; }
+  margin: 5px 10px;
+  height: 20px;
+  cursor: pointer; }
+  .thumb:hover {
+    filter: drop-shadow(2px 2px 10px #3ec4fc); }
 
 main {
   width: 100%;

@@ -8,10 +8,8 @@ Rules: It is not available to create an account on your own. If you want to expl
 
 
 ##To Do
-2. Create 'profile' subpage.
-3. Allow users to comment other user's profiles.
-4. Create 'activity throughout the time' on 'profile' as it is on github.
-
+1. Allow users to comment other user's profiles.
+2. Create 'activity throughout the time' on 'profile' as it is on github.
 
 ##Done
 1. Signing in system
@@ -20,3 +18,5 @@ Rules: It is not available to create an account on your own. If you want to expl
 4. Display latest wokouts.
 5. Allow users to comment each workout.
 6. Design UI to not be a garbage.
+7. Create 'profile' subpage.
+8. Users can like posts and comments.
