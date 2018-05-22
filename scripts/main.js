@@ -5,6 +5,8 @@ $(document).ready(function(){
   const timeCount = [];
   const userWorkoutAmount = $('#workoutAmount .single-data');
   const userTimeSpent = $('#timeSpent .single-data');
+  const trigger = $("#loginTrigger");
+  const form = $("#logForm");
   for(let i = 0; i<userWorkoutAmount.length; i++){
     trainingsCount.push(userWorkoutAmount.eq(i).attr("value"));
     timeCount.push(userTimeSpent.eq(i).attr("value"));
@@ -26,23 +28,35 @@ $(document).ready(function(){
     }
   }, 300);
 
-  const trigger = $("#loginTrigger");
-  const form = $("#logForm form");
-  trigger.click(function(){
-    if(form.css("bottom") === "0px") {
+  var logToggle = function(){
+    if((form.css("z-index") === "10") || form.length === 0) {
+      form.css('z-index', '-10');
       form.animate({"bottom": "-200px", "opacity": "0"}, 1000);
     }
     else{
-      $("#logForm").css('z-index', '10');
+      form.css('z-index', '10');
       form.animate({"bottom": "0px", "opacity": "1"}, 1000);
     }
+  }
+  trigger.click(() => logToggle());
+
+  $("body").on('click', '#close', function(){
+    if(trigger.length>0) logToggle();
+    else $('#close').parent().remove();
   })
+
   const addPost = $("#add-post");
   addPost.click(function(){
-    $("body").append("<form id='posting-box' action='scripts/server/addWorkout.php' method='post'><span id = 'close'>X</span><p>Czas treningu</p><input type='number' name='time' min='10' required><p>Rodzaj treningu</p><input type='text' name='type' required><p>Opis</p><textarea name='description'></textarea><input type='submit' value='Dodaj'></form>");
-  })
-  $("body").on('click', '#close', function(){
-    $('#close').parent().remove();
+    if($('#posting-box').length === 0){
+    $("body").append(`<form id='posting-box' action='scripts/server/addWorkout.php' method='post'><span id = 'close'>X</span><p>Czas treningu</p><input type='number' name='time' min='10' required><p>Rodzaj treningu</p><select name='type' required>
+      <option selected="true" disabled="disabled" hidden></option>
+      <option value='Split'>Split</option>
+      <option value='FBW'>FBW</option>
+      <option value='Kalistenika'>Kalistenika</option>
+      <option value='Cardio'>Cardio</option>
+      <option value='Inne'>Inne</option>
+      </select><p>Opis</p><textarea name='description'></textarea><input type='submit' value='Dodaj'></form>`);
+    }
   })
 
   const placeImageToPost = function(index){
@@ -64,7 +78,7 @@ const countAnimation = function(JquerySelector, time){
        valueCounter++;
    }, frameChangeTime);
 }
-for(let i = 0; i<2; i++) countAnimation($('h1').eq(i), 2000);
+for(let i = 0; i<2; i++) countAnimation($('#landing h1').eq(i), 2000);
 
 //textareas automatic height
 $('textarea').each(function () {

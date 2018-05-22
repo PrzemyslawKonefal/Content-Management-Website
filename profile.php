@@ -8,7 +8,7 @@
   else{
     $userId = htmlentities($_GET['id'], ENT_QUOTES, "UTF-8");
     $_SESSION['location'] = 'profile.php?id='.$userId;
-    $result = $connection->query("SELECT nick , workout_num , workout_time FROM users WHERE ID = $userId");
+    $result = $connection->query("SELECT nick , workout_num , workout_time, bio FROM users WHERE ID = $userId");
     if ($result ->num_rows >0) {
       $chosenUser = $result->fetch_assoc();
     }
@@ -16,6 +16,21 @@
       header('Location: index.php');
     }
 
+    $result = $connection->query("SELECT workout_num , workout_time FROM users ORDER BY workout_num DESC");
+    if ($result ->num_rows >0) {
+      $positionNumCounter = 1;
+      $positionTimeCounter = 1;
+      $wokoutsArray = array();
+      while($row = $result->fetch_assoc()){
+        if($row['workout_num'] > $chosenUser['workout_num']) $positionNumCounter++;
+        array_push($wokoutsArray, $row['workout_time']);
+      }
+      rsort($wokoutsArray);
+      for ($i=0; $i<sizeof($wokoutsArray); $i++) {
+        if($wokoutsArray[$i] <= $chosenUser['workout_time']) {break;}
+        $positionTimeCounter++;
+      }
+    }
     $result = $connection->query("SELECT * FROM workouts WHERE Owner_ID = $userId ORDER BY ID DESC");
     $userPosts = array();
     if ($result ->num_rows >0) {
@@ -23,8 +38,49 @@
         array_push($userPosts, $row);
       }
     }
+
+    $result = $connection->query("SELECT Likes FROM comments WHERE Name = '{$chosenUser['nick']}' AND Is_Verified = 1");
+    $userComments = array();
+    if ($result ->num_rows >0) {
+      while($row = $result->fetch_assoc()){
+        array_push($userComments, $row);
+      }
+    }
   }
   $logged = isset($_SESSION['UserData']);
+
+  //get the most picked excercise
+  if(sizeof($userPosts)>0){
+      $typeApperances = array(0, 0, 0, 0, 0);
+      for ($i=0; $i<sizeof($userPosts) ; $i++) {
+          switch($userPosts[$i]['Type']){
+            case "Split":
+                $typeApperances[0]++;
+                break;
+            case "FBW":
+                $typeApperances[1]++;
+                break;
+            case "Kalistenika":
+                $typeApperances[2]++;
+                break;
+            case "Cardio":
+                $typeApperances[3]++;
+                break;
+            case "Inne":
+                $typeApperances[4]++;
+                break;
+            default:
+          }
+      }
+      $max = array_keys($typeApperances, max($typeApperances));
+      if($max[0] == 0) $mostPickedType = "Split";
+      else if($max[0] == 1) $mostPickedType = "FBW";
+      else if($max[0] == 2) $mostPickedType = "Kalistenika";
+      else if($max[0] == 3) $mostPickedType = "Cardio";
+      else if($max[0] == 4) $mostPickedType = "Inne";
+  }
+
+  else $mostPickedType = "Żaden";
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -39,18 +95,32 @@
   <body>
     <main>
       <img src="img/characters/<?php echo strtolower($chosenUser['nick'])?>/main.jpg" alt="User Photo">
+          <h1><?php echo $chosenUser['nick']; ?></h1>
+          <p id="bio"><?php echo $chosenUser['bio']; ?></p>
       <div id="user-stats">
           <div class="stat">
             <h3>Treningów</h3>
-            <span><?php echo $chosenUser['workout_num'] ?></span>
+            <span><?php echo $chosenUser['workout_num'].' (#'.$positionNumCounter.')';?></span>
           </div>
           <div class="stat">
             <h3>Minut na treningu</h3>
-            <span><?php echo $chosenUser['workout_time'] ?></span>
+            <span><?php echo $chosenUser['workout_time'].' (#'.$positionTimeCounter.')' ?></span>
           </div>
           <div class="stat">
             <h3>Średni czas treningu</h3>
-            <span><?php echo round($chosenUser['workout_time']/$chosenUser['workout_num']); ?></span>
+            <span><?php if(sizeof($userPosts)>0) echo round($chosenUser['workout_time']/$chosenUser['workout_num']); else echo "0"; ?></span>
+          </div>
+          <div class="stat">
+            <h3>Ulubiony trening</h3>
+            <span><?php echo $mostPickedType; ?></span>
+          </div>
+          <div class="stat">
+            <h3>Data ostatniego treningu</h3>
+            <span><?php if(sizeof($userPosts)>0)echo $userPosts[0]['Date']; else echo "Nigdy";?></span>
+          </div>
+          <div class="stat">
+            <h3>Komentarze</h3>
+            <span><?php echo sizeof($userComments) ?></span>
           </div>
       </div>
     </main>

@@ -202,15 +202,14 @@
 
     </div>
     </div>
-    <div id="logForm">
-      <form  action="scripts/server/login.php" method="post">
+      <form id="logForm"  action="scripts/server/login.php" method="post">
+          <span id = 'close'>X</span>
           <p>Nick</p>
-          <input type="text" name="nick">
+          <input type="text" name="nick" required>
           <p>Hasło</p>
-          <input type="password" name="password">
+          <input type="password" name="password" required>
           <input type="submit" value="Zaloguj">
       </form>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

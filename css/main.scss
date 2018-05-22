@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Courgette');
 $main-colors: (
   first: #e3e3e3,
   second: #d7d6d6,
@@ -12,14 +13,11 @@ $main-colors: (
   align-items: center;
 }
 html{
-  height: 100%;
   width: 100%;
 }
 body{
-  height: 100%;
   width: 100%;
   margin: 0;
-  overflow-x: hidden;
   background: map-get($main-colors, first);
   font-family: 'Didact Gothic', sans-serif;
 }
@@ -30,7 +28,7 @@ nav{
 #landing{
       @extend %flex-typical;
       flex-direction: column;
-      margin: 80px;
+      margin-top: 80px;
       position: relative;
 
       h1{
@@ -113,29 +111,44 @@ nav{
 }
 #logForm{
   position: fixed;
-  bottom: 0;
-  z-index: -1;
+  z-index: -10;
   left: 50%;
-  background: #55bf0b;
+  background: #3e85e4;
+  width: 300px;
+  padding: 10px;
   transform: translateX(-50%);
   @extend %flex-typical;
   flex-direction: column;
-  a{
-    color: inherit;
+  overflow: hidden;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  bottom:-200px;
+  p{
+    color: map-get($main-colors, first);
+    margin: 0;
+  }
+  input{
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px 8px;
+    transition: .3s ease;
     &:hover{
-      text-decoration: none;
+      background: map-get($main-colors, first);
+    }
+    &:focus{
+      border: 1px solid #5dd911;
     }
   }
-  form{
-    height: 200px;
-    border-radius: 10px;
-    border: 1px solid #000;
-    position: relative;
-    bottom:-200px;
-    *{
-      display: block;
-      margin: auto;
-      text-align: center;
+  input:last-of-type{
+    background: #5dd911;
+    margin-top: 10px;
+    color: #fff;
+    padding: 8px 20px;
+    cursor: pointer;
+    &:hover{
+      letter-spacing: 3px;
     }
   }
 }
@@ -165,6 +178,7 @@ nav{
   flex-direction: column;
   position: fixed;
   z-index: 1000;
+  background: #3e85e4;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -173,12 +187,50 @@ nav{
   height: 400px;
   width: 300px;
   padding: 20px 0;
-  textarea{
-    height: 150px;
-    resize: none;
-  }
-  input, textarea{
+  input, textarea, select{
     width: calc(100% - 18px);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px 8px;
+    transition: .3s ease;
+    &:hover{
+      background: map-get($main-colors, first);
+    }
+    &:focus{
+      border: 1px solid #5dd911;
+    }
+  }
+  select{
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+  }
+  select:hover{
+    background: #fff;
+  }
+  option{
+    padding: 11px 0;
+    background: map-get($main-colors, first);
+    &:nth-of-type(even){
+      background: map-get($main-colors, second);
+    }
+  }
+  textarea{
+    height: 130px;
+    resize: none;
+    padding: 8px 8px 30px 8px;
+  }
+  input:last-of-type{
+    background: #5dd911;
+    color: #fff;
+    cursor: pointer;
+    &:hover{
+      letter-spacing: 3px;
+    }
+  }
+  p{
+    color: map-get($main-colors, first);
+    margin-bottom: 8px;
   }
 }
 #close{
@@ -191,7 +243,10 @@ nav{
 #latest-workouts{
   @extend %flex-typical;
   flex-direction: column;
+  margin: auto;
   margin-top: 30px;
+  width: 600px;
+  padding: 20px 0;
 }
 .post{
   @extend %flex-typical;
@@ -356,35 +411,62 @@ nav{
 }
 main{
   width: 100%;
-  height: 500px;
   box-shadow: 0 5px 20px #000;
-  background: #3eb3e4;
+  background: map-get($main-colors, third);
   @extend %flex-typical;
-  flex-wrap: nowrap;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  color: #fff;
   >img{
-    width: 300px;
-    height: 500px;
+    margin: 20px 0 5px 0;
+    width: 180px;
+    height: 180px;
+    border: 5px solid #fff;
+    box-sizing: content-box;
+  }
+  >h1{
+    text-shadow: 2px 1px 10px #000;
+  }
+}
+#bio{
+  width: 70%;
+  min-width: 300px;
+  margin: 10px auto 20px auto;
+  background: map-get($main-colors, first);
+  border: 2px solid map-get($main-colors, fourth);
+  border-radius: 40px;
+  padding: 30px;
+  color: #000;
+  font-size: 1.3em;
+  text-align: center;
+  font-family: 'Courgette', cursive;
+  &::before, &::after{
+    content: '``';
+    font-size: 1.3em;
+    color: #3e85e4;
   }
 }
 #user-stats{
   @extend %flex-typical;
+  justify-content: center;
   width: 100%;
+  border-top: 2px solid map-get($main-colors, first);
+  background: #3391b9;
+  padding: 20px 0;
 }
 .stat{
+  width: 30vw;
+  height: 30vw;
+  min-height: 120px;
+  max-height: 200px;
+  min-width: 120px;
+  max-width: 200px;
   text-align: center;
-  color: map-get($main-colors, first);
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px #000;
+  margin: 5px;
   h3{
-    margin-bottom: 55px;
-  }
-  span{
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 50px;
-    font-size: 1.5em;
-    border: 1px solid #000;
-    height: 200px;
+    margin-bottom: 35px;
   }
 }
 #profiles{
@@ -441,4 +523,17 @@ main{
 }
 .toggle-arrow{
   transition: .3s ease;
+}
+@media only screen and (max-width: 600px){
+  .stat{
+    h3{
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+  }
+}
+@media only screen and (max-width: 550px){
+  #latest-workouts{
+    width: 100%;
+  }
 }

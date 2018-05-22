@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Didact+Gothic");
+@import url("https://fonts.googleapis.com/css?family=Courgette");
 #landing, .stats, #characters, #logForm, #posting-box, #latest-workouts, .post, main, #user-stats, #scroll-box {
   display: flex;
   flex-wrap: wrap;
@@ -6,14 +7,11 @@
   align-items: center; }
 
 html {
-  height: 100%;
   width: 100%; }
 
 body {
-  height: 100%;
   width: 100%;
   margin: 0;
-  overflow-x: hidden;
   background: #e3e3e3;
   font-family: 'Didact Gothic', sans-serif; }
 
@@ -23,7 +21,7 @@ nav {
 
 #landing {
   flex-direction: column;
-  margin: 80px;
+  margin-top: 80px;
   position: relative; }
   #landing h1 {
     font-size: 7em;
@@ -93,26 +91,39 @@ nav {
 
 #logForm {
   position: fixed;
-  bottom: 0;
-  z-index: -1;
+  z-index: -10;
   left: 50%;
-  background: #55bf0b;
+  background: #3e85e4;
+  width: 300px;
+  padding: 10px;
   transform: translateX(-50%);
-  flex-direction: column; }
-  #logForm a {
-    color: inherit; }
-    #logForm a:hover {
-      text-decoration: none; }
-  #logForm form {
-    height: 200px;
+  flex-direction: column;
+  overflow: hidden;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  bottom: -200px; }
+  #logForm p {
+    color: #e3e3e3;
+    margin: 0; }
+  #logForm input {
+    border: none;
+    outline: none;
     border-radius: 10px;
-    border: 1px solid #000;
-    position: relative;
-    bottom: -200px; }
-    #logForm form * {
-      display: block;
-      margin: auto;
-      text-align: center; }
+    padding: 5px 8px;
+    transition: .3s ease; }
+    #logForm input:hover {
+      background: #e3e3e3; }
+    #logForm input:focus {
+      border: 1px solid #5dd911; }
+  #logForm input:last-of-type {
+    background: #5dd911;
+    margin-top: 10px;
+    color: #fff;
+    padding: 8px 20px;
+    cursor: pointer; }
+    #logForm input:last-of-type:hover {
+      letter-spacing: 3px; }
 
 .nav-link {
   color: #e3e3e3;
@@ -137,6 +148,7 @@ nav {
   flex-direction: column;
   position: fixed;
   z-index: 1000;
+  background: #3e85e4;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -145,11 +157,40 @@ nav {
   height: 400px;
   width: 300px;
   padding: 20px 0; }
+  #posting-box input, #posting-box textarea, #posting-box select {
+    width: calc(100% - 18px);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px 8px;
+    transition: .3s ease; }
+    #posting-box input:hover, #posting-box textarea:hover, #posting-box select:hover {
+      background: #e3e3e3; }
+    #posting-box input:focus, #posting-box textarea:focus, #posting-box select:focus {
+      border: 1px solid #5dd911; }
+  #posting-box select {
+    border-radius: 10px 10px 0 0;
+    text-align: center; }
+  #posting-box select:hover {
+    background: #fff; }
+  #posting-box option {
+    padding: 11px 0;
+    background: #e3e3e3; }
+    #posting-box option:nth-of-type(even) {
+      background: #d7d6d6; }
   #posting-box textarea {
-    height: 150px;
-    resize: none; }
-  #posting-box input, #posting-box textarea {
-    width: calc(100% - 18px); }
+    height: 130px;
+    resize: none;
+    padding: 8px 8px 30px 8px; }
+  #posting-box input:last-of-type {
+    background: #5dd911;
+    color: #fff;
+    cursor: pointer; }
+    #posting-box input:last-of-type:hover {
+      letter-spacing: 3px; }
+  #posting-box p {
+    color: #e3e3e3;
+    margin-bottom: 8px; }
 
 #close {
   position: absolute;
@@ -160,7 +201,10 @@ nav {
 
 #latest-workouts {
   flex-direction: column;
-  margin-top: 30px; }
+  margin: auto;
+  margin-top: 30px;
+  width: 600px;
+  padding: 20px 0; }
 
 .post {
   flex-direction: column;
@@ -306,31 +350,57 @@ nav {
 
 main {
   width: 100%;
-  height: 500px;
   box-shadow: 0 5px 20px #000;
-  background: #3eb3e4;
-  flex-wrap: nowrap;
+  background: #3ec4fc;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start; }
+  color: #fff; }
   main > img {
-    width: 300px;
-    height: 500px; }
+    margin: 20px 0 5px 0;
+    width: 180px;
+    height: 180px;
+    border: 5px solid #fff;
+    box-sizing: content-box; }
+  main > h1 {
+    text-shadow: 2px 1px 10px #000; }
+
+#bio {
+  width: 70%;
+  min-width: 300px;
+  margin: 10px auto 20px auto;
+  background: #e3e3e3;
+  border: 2px solid #3eb3e4;
+  border-radius: 40px;
+  padding: 30px;
+  color: #000;
+  font-size: 1.3em;
+  text-align: center;
+  font-family: 'Courgette', cursive; }
+  #bio::before, #bio::after {
+    content: '``';
+    font-size: 1.3em;
+    color: #3e85e4; }
 
 #user-stats {
-  width: 100%; }
+  justify-content: center;
+  width: 100%;
+  border-top: 2px solid #e3e3e3;
+  background: #3391b9;
+  padding: 20px 0; }
 
 .stat {
+  width: 30vw;
+  height: 30vw;
+  min-height: 120px;
+  max-height: 200px;
+  min-width: 120px;
+  max-width: 200px;
   text-align: center;
-  color: #e3e3e3; }
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px #000;
+  margin: 5px; }
   .stat h3 {
-    margin-bottom: 55px; }
-  .stat span {
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 50px;
-    font-size: 1.5em;
-    border: 1px solid #000;
-    height: 200px; }
+    margin-bottom: 35px; }
 
 #profiles {
   padding-top: 20px;
@@ -380,5 +450,13 @@ main {
 
 .toggle-arrow {
   transition: .3s ease; }
+
+@media only screen and (max-width: 600px) {
+  .stat h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px; } }
+@media only screen and (max-width: 550px) {
+  #latest-workouts {
+    width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */
