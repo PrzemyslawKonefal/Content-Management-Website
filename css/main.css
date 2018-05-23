@@ -210,6 +210,7 @@ nav {
   padding: 20px 0; }
 
 .post {
+  position: relative;
   flex-direction: column;
   padding: 10px 0px 0px 0px;
   width: calc(100% - 20px);
@@ -239,7 +240,8 @@ nav {
   .post form {
     width: 100%;
     background: #e3e3e3;
-    border-top: 2px solid #3eb3e4; }
+    border-top: 2px solid #3eb3e4;
+    margin: 0; }
     .post form > input:last-of-type {
       display: none; }
     .post form h6 {
@@ -256,15 +258,10 @@ nav {
   margin: 0;
   width: 100%; }
 
-.post-date {
-  font-size: 0.8em !important;
-  width: 100%;
-  background: #e3e3e3;
-  border-top: 1px solid #3eb3e4;
-  text-align: center;
-  height: 100%;
-  margin: 0;
-  padding: 5px 0; }
+.post-link {
+  position: absolute;
+  top: 5px;
+  right: 5px; }
 
 .disabled-nick {
   pointer-events: none;
@@ -345,6 +342,9 @@ nav {
 .comment-content {
   text-align: left;
   padding: 5px 10px; }
+
+.comments {
+  border-bottom: 0 !important; }
 
 .thumb {
   color: #3ec4fc;

@@ -161,7 +161,9 @@
       for ($i = 0; $i <sizeof($newPosts); $i++){
         $post = $newPosts[$i];
         $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
+
           echo '<div class="post">
+            <a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
             <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
             <h3>'.$post['Owner'].'</h3>
             <div>
@@ -196,7 +198,6 @@
          }
          echo '</div>
         </div>
-      <p class="post-date">'.$post['Date'].'</p>
    </div>';
    }
        ?>
