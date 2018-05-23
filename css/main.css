@@ -15,6 +15,9 @@ body {
   background: #e3e3e3;
   font-family: 'Didact Gothic', sans-serif; }
 
+#relative-box {
+  margin-top: 80px; }
+
 nav {
   padding: 40px 10px;
   background: #3eb3e4; }
@@ -358,7 +361,8 @@ main {
   background: #3ec4fc;
   flex-direction: column;
   justify-content: flex-start;
-  color: #fff; }
+  color: #fff;
+  padding-top: 80px; }
   main > img {
     margin: 20px 0 5px 0;
     width: 180px;

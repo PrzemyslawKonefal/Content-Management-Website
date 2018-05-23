@@ -19,7 +19,7 @@ if (!isset($_POST['postID'])) {
     echo "Error: ".$connection->connect_errno;
   }
   else{
-    $connection->query("INSERT INTO comments VALUES (NULL, '$name', '$content', '0', '$isVerified', '$postID', now())");
+    $connection->query("INSERT INTO comments VALUES (NULL, '$name', '$content', '0', '', '$isVerified', '$postID', now())");
     header("Location: ../../".$_SESSION['location']);
   }
 

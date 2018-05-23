@@ -17,7 +17,7 @@ $connection = @new mysqli($host, $db_user, $db_password, $db_name);
       echo "Error: ".$connection->connect_errno;
     }
     else{
-      if ($connection->query("INSERT INTO workouts VALUES (NULL, '$time', '$type', '$description', now(), '$id', '$owner')")) {
+      if ($connection->query("INSERT INTO workouts VALUES (NULL, '$time', '$type', '$description', 0, now(), '$id', '$owner')")) {
             $result = $connection->query("SELECT workout_num, workout_time FROM users WHERE ID = {$id}");
             $row = $result->fetch_assoc();
             $time += $row['workout_time'];

@@ -93,6 +93,25 @@
     <title>Sylwetka Boga 2018</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav" style="width:100%; display:flex; justify-content: center;">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.php">Główna<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <?php
+             if(!$logged) echo "<span id='loginTrigger' class='nav-link'>Zaloguj<i class='fas fa-sign-in-alt'></i></span>";
+             else{echo "<span class='nav-link' id='add-post'>Dodaj trening</span></li>";
+                  echo "<li class='nav-item'><a href='scripts/server/logout.php' class='nav-link'>Wyloguj <i class='fas fa-sign-out-alt'></i></a></li>";}?>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <main>
       <img src="img/characters/<?php echo strtolower($chosenUser['nick'])?>/main.jpg" alt="User Photo">
           <h1><?php echo $chosenUser['nick']; ?></h1>
