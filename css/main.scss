@@ -532,12 +532,55 @@ main{
 .toggle-arrow{
   transition: .3s ease;
 }
+#option-box{
+  margin-top: 80px;
+  @extend %flex-typical;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: 100%;
+}
+.profile-change{
+  min-width: 300px;
+  width: 50%;
+  margin: 10px;
+  min-height: 80vh;
+  @extend %flex-typical;
+  flex-direction: column;
+  background: #2f8db4;
+  border-radius: 25px;
+  padding: 15px 15px;
+  color: #fff;
+  textarea{
+    resize: none;
+    width: 100%;
+    padding-bottom: 40px;
+    min-height: 50%;
+  }
+  >input:last-of-type{
+    background: #5dd911;
+    margin-top: 10px;
+    color: #fff;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: .3s ease;
+    border: none;
+    &:hover{
+      letter-spacing: 3px;
+    }
+  }
+}
 @media only screen and (max-width: 600px){
   .stat{
     h3{
       font-size: 1.2em;
       margin-bottom: 15px;
     }
+  }
+  #option-box{
+    flex-wrap: wrap;
+  }
+  .profile-change{
+    width: 100%;
   }
 }
 @media only screen and (max-width: 550px){

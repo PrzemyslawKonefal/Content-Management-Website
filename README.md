@@ -12,7 +12,7 @@ Rules: It is not available to create an account on your own. If you want to expl
 2. Create 'activity throughout the time' on 'profile' as it is on github.
 
 ##Done
-1. Signing in system
+1. Signing in system.
 2. Allow users to push new workouts.
 3. Create data visualisation for workouts.
 4. Display latest wokouts.
@@ -20,3 +20,5 @@ Rules: It is not available to create an account on your own. If you want to expl
 6. Design UI to not be a garbage.
 7. Create 'profile' subpage.
 8. Users can like posts and comments.
+9. Let users change basic profile settings.
+10. Each post can be linked.
