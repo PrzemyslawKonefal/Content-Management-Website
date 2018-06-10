@@ -97,7 +97,6 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span><i class="fas fa-bars"></i></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav" style="width:100%; display:flex; justify-content: center;">
           <li class="nav-item">
@@ -107,7 +106,8 @@
             <?php
              if(!$logged) echo "<span id='loginTrigger' class='nav-link'>Zaloguj<i class='fas fa-sign-in-alt'></i></span>";
              else{echo "<span class='nav-link' id='add-post'>Dodaj trening</span></li>";
-                  echo "<li class='nav-item'><a href='scripts/server/logout.php' class='nav-link'>Wyloguj <i class='fas fa-sign-out-alt'></i></a></li>";}?>
+                  echo "<li class='nav-item'><a href='scripts/server/logout.php' class='nav-link'>Wyloguj <i class='fas fa-sign-out-alt'></i></a></li>";
+                  echo "<li class='nav-item'><a href='profil.php' class='nav-link'>Profil</a></li>";}?>
           </li>
         </ul>
       </div>
@@ -148,25 +148,29 @@
         for ($i = 0; $i <sizeof($userPosts); $i++){
           $post = $userPosts[$i];
           $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
-          echo '<div class="post">
-                <a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
-                <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
-                <h3>'.$post['Owner'].'</h3>
-                <div>
-                     <p>Typ treningu <br> <span>'.$post['Type'].'</span> </p>
-                     <p>Czas <br> <span>'.$post['Time_min'].'</span> </p>
-                 </div>
-                 <p class="post-description">'.$post['Description'].'
-                 <br><img class="thumb" src="img/like.png"><span>'.$post["Likes"].'</span></p>
-                 <form action="scripts/server/addComment.php" method="post">
-                   <h6 opened="false">Comments <i class="fas fa-angle-down"></i> </h6>
-                   <div class="comment-addition">
-                    <div class="comment-left-box">
-                      <input type="text" name="name" value="';
-              if($logged) echo $_SESSION['UserData']['nick'];
-              echo '" class="';
-              if($logged) echo "disabled-nick";
-              echo '" required>
+
+          echo '<div class="post">';
+            if ($logged && $post['Owner_ID'] == $_SESSION['UserData']['ID']) {
+              echo '<div class= "settings-trigger-box"><i class="fas fa-cog post-settings-trigger"></i></div>';
+             }
+          echo '<a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
+            <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
+            <h3>'.$post['Owner'].'</h3>
+            <div class = "post-stat-box">
+                 <p>Typ treningu <br> <span class = "post-stat-type">'.$post['Type'].'</span> </p>
+                 <p>Czas <br> <span class = "post-stat-time">'.$post['Time_min'].'</span> </p>
+             </div>
+             <p class="post-description">'.$post['Description'].'
+             <br><img class="thumb" src="img/like.png"><span>'.$post["Likes"].'</span></p>
+             <form action="scripts/server/addComment.php" method="post">
+               <h6 opened="false">Comments <i class="fas fa-angle-down"></i> </h6>
+               <div class="comment-addition">
+                <div class="comment-left-box">
+                  <input type="text" name="name" value="';
+          if($logged) echo $_SESSION['UserData']['nick'];
+          echo '" class="';
+          if($logged) echo "disabled-nick";
+          echo '" required>
               <input type="submit" value="Dodaj">
             </div>
              <textarea name="content" required></textarea>
@@ -175,16 +179,16 @@
            </form>
            <div class="comments">
              <div class="inner-comments">';
-             if ($result ->num_rows >0) {
-             while ($row = $result->fetch_assoc()){
-                 if ($row['Is_Verified']) $Verified = 'verified';
-                 else $Verified = '';
-                 echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'".$Verified.">".$row['Name']."</span>".$row['Content']."</p><div><img class='thumb' src ='img/like.png'><span>".$row['Likes']."</span><data value = '".$row['Comments_ID']."'></data></div></div>";
-               }
-             }
-             echo '</div>
-            </div>
-       </div>';
+         if ($result ->num_rows >0) {
+         while ($row = $result->fetch_assoc()){
+             if ($row['Is_Verified']) $Verified = 'verified';
+             else $Verified = '';
+             echo "<div class='comment'><p class='comment-content'><span class='comment-name' title='".$row['Comment_Date']."'".$Verified.">".$row['Name']."</span>".$row['Content']."</p><div><img class='thumb' src ='img/like.png'><span>".$row['Likes']."</span><data value = '".$row['Comments_ID']."'></data></div></div>";
+           }
+         }
+         echo '</div>
+        </div>
+   </div>';
      }
          ?>
     </div>

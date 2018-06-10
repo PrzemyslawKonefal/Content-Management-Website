@@ -141,7 +141,7 @@
         <p><?php echo $users[8]["nick"] ?></p>
       </div>
     </div>
-<button id="show-profiles" type="button" opened="false">Lista Kadetów<i class="fas fa-angle-down toggle-arrow"></i></button>
+<button id="show-profiles" type="button" opened="true">Lista Kadetów<i class="fas fa-angle-down toggle-arrow"></i></button>
 <div id="profiles">
   <div id="inner-profiles">
     <div id="scroll-box">
@@ -162,13 +162,16 @@
         $post = $newPosts[$i];
         $result = $connection->query("SELECT * FROM comments WHERE Post_ID = {$post['ID']}");
 
-          echo '<div class="post">
-            <a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
+          echo '<div class="post">';
+            if ($logged && $post['Owner_ID'] == $_SESSION['UserData']['ID']) {
+              echo '<div class= "settings-trigger-box"><i class="fas fa-cog post-settings-trigger"></i></div>';
+             }
+          echo '<a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
             <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
             <h3>'.$post['Owner'].'</h3>
-            <div>
-                 <p>Typ treningu <br> <span>'.$post['Type'].'</span> </p>
-                 <p>Czas <br> <span>'.$post['Time_min'].'</span> </p>
+            <div class = "post-stat-box">
+                 <p>Typ treningu <br> <span class = "post-stat-type">'.$post['Type'].'</span> </p>
+                 <p>Czas <br> <span class = "post-stat-time">'.$post['Time_min'].'</span> </p>
              </div>
              <p class="post-description">'.$post['Description'].'
              <br><img class="thumb" src="img/like.png"><span>'.$post["Likes"].'</span></p>

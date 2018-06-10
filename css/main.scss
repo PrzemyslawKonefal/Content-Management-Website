@@ -187,7 +187,7 @@ nav{
   transform: translate(-50%, -50%);
   border-radius: 15px;
   box-shadow: 0 0 70px #000;
-  height: 400px;
+  min-height: 400px;
   width: 300px;
   padding: 20px 0;
   input, textarea, select{
@@ -225,6 +225,7 @@ nav{
   }
   input:last-of-type{
     background: #5dd911;
+    margin-top: 15px;
     color: #fff;
     cursor: pointer;
     &:hover{
@@ -531,6 +532,7 @@ main{
 }
 .toggle-arrow{
   transition: .3s ease;
+  transform: rotateZ(180deg);
 }
 #option-box{
   margin-top: 80px;
@@ -568,6 +570,21 @@ main{
       letter-spacing: 3px;
     }
   }
+}
+.post-settings-trigger{
+  font-size: 22px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  transition: .3s ease;
+  &:hover{
+    color: green;
+  }
+}
+.settings-trigger-box{
+  width: auto;
+  border: none !important;
 }
 @media only screen and (max-width: 600px){
   .stat{

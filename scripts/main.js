@@ -48,28 +48,42 @@ $(document).ready(function(){
   const addPost = $("#add-post");
   addPost.click(function(){
     if($('#posting-box').length === 0){
-    $("body").append(`<form id='posting-box' action='scripts/server/addWorkout.php' method='post'><span id = 'close'>X</span><p>Czas treningu</p><input type='number' name='time' min='10' required><p>Rodzaj treningu</p><select name='type' required>
-      <option selected="true" disabled="disabled" hidden></option>
-      <option value='Split'>Split</option>
-      <option value='FBW'>FBW</option>
-      <option value='Kalistenika'>Kalistenika</option>
-      <option value='Cardio'>Cardio</option>
-      <option value='Inne'>Inne</option>
-      </select><p>Opis</p><textarea name='description'></textarea><input type='submit' value='Dodaj'></form>`);
+      const maxDate = new Date().toISOString().split("T")[0];
+      $("body").append(`
+        <form id='posting-box' action='scripts/server/addWorkout.php' method='post'>
+          <span id = 'close'>X</span>
+          <p>Data</p>
+          <input id="date" name="date" type="date" value="${maxDate}" max="${maxDate}" min ="2018-04-01" required>
+          <p>Czas treningu</p>
+          <input type='number' name='time' min='10' required>
+          <p>Rodzaj treningu</p>
+          <select name='type' required>
+          <option selected="true" disabled="disabled" hidden></option>
+          <option value='Split'>Split</option>
+          <option value='FBW'>FBW</option>
+          <option value='Kalistenika'>Kalistenika</option>
+          <option value='Cardio'>Cardio</option>
+          <option value='Inne'>Inne</option>
+          </select>
+          <p>Opis</p>
+          <textarea name='description'></textarea>
+          <input type='submit' value='Dodaj'>
+        </form>`);
     }
   })
 
-const countAnimation = function(JquerySelector, time){
+const countAnimation = function(JquerySelector, time, speed = 1){
    let value = JquerySelector.html();
    let valueCounter = 0;
    let frameChangeTime = time/value;
    let interval = setInterval(function(){
        JquerySelector.text(valueCounter);
-       if(valueCounter >= value) clearInterval(interval);
-       valueCounter++;
+       if(valueCounter+speed >= value) {JquerySelector.text(value);clearInterval(interval)};
+       valueCounter+=speed;
    }, frameChangeTime);
 }
-for(let i = 0; i<2; i++) countAnimation($('#landing h1').eq(i), 2000);
+countAnimation($('#landing h1').eq(0), 2000);
+countAnimation($('#landing h1').eq(1), 2000, 10);
 
 //textareas automatic height
 $('textarea').each(function () {
@@ -120,8 +134,8 @@ $('textarea').each(function () {
       $(this).next().hide();
       return;
     })
-    $('#profiles').hide();
-});
+
+
     // Like hit for comments and posts
     $('.comment .thumb').click(function(){
         if($('body > data').attr('value') != '1') return;
@@ -144,3 +158,34 @@ $('textarea').each(function () {
             $(this).css('cursor','auto');
             return;
         });
+    $('.settings-trigger-box').click(function(){
+      const time = $(this).parent().find('.post-stat-time').html();
+      const type = $(this).parent().find('.post-stat-type').html();
+      const date = $(this).parent().find('.post-link').html();
+      const maxDate = new Date().toISOString().split("T")[0];
+      const postID = $(this).parent().find('.post-link').attr('href').split('=')[1];
+      let description = $(this).parent().find('.post-description').html();
+          description = description.substr(0, description.indexOf("<br>")).trim();
+      $("body").append(`
+        <form id='posting-box' action='scripts/server/addWorkout.php' method='post'>
+          <span id = 'close'>X</span>
+          <p>Data</p>
+          <input id="date" name="date" type="date" value="${date}" max="${maxDate}" min ="2018-04-01" required>
+          <p>Czas treningu</p>
+          <input type='number' name='time' min='10' value="${time}" required>
+          <p>Rodzaj treningu</p>
+          <select name='type' required>
+          <option selected="true" value ="${type}" hidden>${type}</option>
+          <option value='Split'>Split</option>
+          <option value='FBW'>FBW</option>
+          <option value='Kalistenika'>Kalistenika</option>
+          <option value='Cardio'>Cardio</option>
+          <option value='Inne'>Inne</option>
+          </select>
+          <p>Opis</p>
+          <textarea name='description'>${description}</textarea>
+          <input name='postID' value ='${postID}' hidden>
+          <input type='submit' value='Zmień'>
+        </form>`);
+    });
+});

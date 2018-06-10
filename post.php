@@ -6,7 +6,7 @@
   }
   else{
     $postId = htmlentities($_GET['id'], ENT_QUOTES, "UTF-8");
-    $_SESSION['location'] = 'profile.php?id='.$userId;
+    $_SESSION['location'] = '';
     $result = $connection->query("SELECT * FROM workouts WHERE ID = $postId");
     if ($result ->num_rows >0) {
       $chosenPost = $result->fetch_assoc();
@@ -32,7 +32,6 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span><i class="fas fa-bars"></i></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav" style="width:100%; display:flex; justify-content: center;">
           <li class="nav-item">
@@ -42,7 +41,8 @@
             <?php
              if(!$logged) echo "<span id='loginTrigger' class='nav-link'>Zaloguj<i class='fas fa-sign-in-alt'></i></span>";
              else{echo "<span class='nav-link' id='add-post'>Dodaj trening</span></li>";
-                  echo "<li class='nav-item'><a href='scripts/server/logout.php' class='nav-link'>Wyloguj <i class='fas fa-sign-out-alt'></i></a></li>";}?>
+                  echo "<li class='nav-item'><a href='scripts/server/logout.php' class='nav-link'>Wyloguj <i class='fas fa-sign-out-alt'></i></a></li>";
+                  echo "<li class='nav-item'><a href='profil.php' class='nav-link'>Profil</a></li>";}?>
           </li>
         </ul>
       </div>

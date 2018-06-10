@@ -157,7 +157,7 @@ nav {
   transform: translate(-50%, -50%);
   border-radius: 15px;
   box-shadow: 0 0 70px #000;
-  height: 400px;
+  min-height: 400px;
   width: 300px;
   padding: 20px 0; }
   #posting-box input, #posting-box textarea, #posting-box select {
@@ -187,6 +187,7 @@ nav {
     padding: 8px 8px 30px 8px; }
   #posting-box input:last-of-type {
     background: #5dd911;
+    margin-top: 15px;
     color: #fff;
     cursor: pointer; }
     #posting-box input:last-of-type:hover {
@@ -457,7 +458,8 @@ main {
     background: #2f8db4; }
 
 .toggle-arrow {
-  transition: .3s ease; }
+  transition: .3s ease;
+  transform: rotateZ(180deg); }
 
 #option-box {
   margin-top: 80px;
@@ -490,6 +492,20 @@ main {
     border: none; }
     .profile-change > input:last-of-type:hover {
       letter-spacing: 3px; }
+
+.post-settings-trigger {
+  font-size: 22px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  transition: .3s ease; }
+  .post-settings-trigger:hover {
+    color: green; }
+
+.settings-trigger-box {
+  width: auto;
+  border: none !important; }
 
 @media only screen and (max-width: 600px) {
   .stat h3 {
