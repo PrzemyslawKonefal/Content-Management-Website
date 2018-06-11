@@ -458,8 +458,8 @@ main{
 #user-stats{
   @extend %flex-typical;
   justify-content: center;
-  width: 100%;
   border-top: 2px solid map-get($main-colors, first);
+  width: 100%;
   background: #3391b9;
   padding: 20px 0;
 }
@@ -582,9 +582,72 @@ main{
     color: green;
   }
 }
+.post-owner-link{
+  color: #000;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
 .settings-trigger-box{
   width: auto;
   border: none !important;
+}
+.activity-calendar-outer{
+  width: 100%;
+  background: #3391b9;
+  display: flex;
+  justify-content: center;
+}
+.activity-calendar-inner{
+  text-align: center;
+  width: 300px;
+  margin-bottom: 25px;
+  border: 1px solid #000;
+  h3{
+    border-bottom: 1px solid #000;
+    padding: 10px 0;
+    margin: 0;
+  }
+  background: rgba(0, 0, 0, 0.6);
+}
+#calendar{
+  font-size: 0;
+  line-height: 0;
+  padding: 10px;
+}
+#calendar-time-range{
+  margin: 0;
+  line-height: 16px;
+  transform: translateY(5px);
+}
+.activityDay{
+  display: inline-block;
+  background: #fff;
+  height: 25px;
+  width: 50px;
+  margin: 2px;
+}
+.activityDay.dayChecked{
+  background: #79d900;
+}
+.buttons-group{
+  button{
+    border: 0;
+    outline: none;
+    margin-bottom: 5px;
+    background: #f7941d;
+    border: 1px solid #f7941d;
+    color: #fff;
+    border-radius: 10px;
+    transition: .3s ease;
+    padding:0px 12px;
+    cursor: pointer;
+    &:hover{
+      background: transparent;
+      color: #f7941d;
+
+    }
+  }
 }
 @media only screen and (max-width: 600px){
   .stat{

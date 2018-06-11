@@ -102,7 +102,7 @@ $('textarea').each(function () {
     });
 
     //toggle comments and profiles visibility
-    $('.post').find('h6').click(function(){
+    $('body').on('click', '.post h6', function(){
       if($(this).attr('opened') === "true") {
         $(this).parent().next().slideUp();
         $(this).next().slideUp();
@@ -113,7 +113,8 @@ $('textarea').each(function () {
         $(this).next().slideDown();
         $(this).attr('opened', 'true');
       }
-    })
+    });
+
     $('#show-profiles').click(function(){
         if($(this).attr('opened') === "true"){
           $('#profiles').slideUp();
@@ -137,7 +138,7 @@ $('textarea').each(function () {
 
 
     // Like hit for comments and posts
-    $('.comment .thumb').click(function(){
+    $('body').on('click', '.comment .thumb', function(){
         if($('body > data').attr('value') != '1') return;
         const id = $(this).parent().find('data').attr('value');
         let span = $(this).parent().find('span');
@@ -148,7 +149,7 @@ $('textarea').each(function () {
         return;
         });
 
-    $('.post-description .thumb').click(function(){
+    $('body').on('click', '.post-description .thumb', function(){
             if($('body > data').attr('value') != '1') return;
             const id = $(this).parent().parent().find('input:last').attr('value');
             let span = $(this).parent().find('span');
@@ -158,7 +159,7 @@ $('textarea').each(function () {
             $(this).css('cursor','auto');
             return;
         });
-    $('.settings-trigger-box').click(function(){
+    $('body').on('click', '.settings-trigger-box', function(){
       const time = $(this).parent().find('.post-stat-time').html();
       const type = $(this).parent().find('.post-stat-type').html();
       const date = $(this).parent().find('.post-link').html();

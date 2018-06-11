@@ -55,7 +55,7 @@
         echo '<div class="post" style="margin: auto; margin-bottom: 10px;">
           <a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
           <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
-          <h3>'.$post['Owner'].'</h3>
+          <a class="post-owner-link" href="profile.php?id='.$post['Owner_ID'].'">'.$post['Owner'].'</a>
           <div>
                <p>Typ treningu <br> <span>'.$post['Type'].'</span> </p>
                <p>Czas <br> <span>'.$post['Time_min'].'</span> </p>

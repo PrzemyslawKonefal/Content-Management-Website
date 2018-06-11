@@ -168,7 +168,7 @@
              }
           echo '<a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
             <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
-            <h3>'.$post['Owner'].'</h3>
+            <a class="post-owner-link" href="profile.php?id='.$post['Owner_ID'].'">'.$post['Owner'].'</a>
             <div class = "post-stat-box">
                  <p>Typ treningu <br> <span class = "post-stat-type">'.$post['Type'].'</span> </p>
                  <p>Czas <br> <span class = "post-stat-time">'.$post['Time_min'].'</span> </p>
@@ -220,5 +220,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/scrollLogic.js"></script>
   </body>
 </html>

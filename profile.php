@@ -31,12 +31,15 @@
         $positionTimeCounter++;
       }
     }
-    $result = $connection->query("SELECT * FROM workouts WHERE Owner_ID = $userId ORDER BY ID DESC");
+    $result = $connection->query("SELECT * FROM workouts WHERE Owner_ID = $userId ORDER BY Date DESC");
     $userPosts = array();
+    $uniqueDates = array();
     if ($result ->num_rows >0) {
       while($row = $result->fetch_assoc()){
         array_push($userPosts, $row);
+        array_push($uniqueDates, $row['Date']);
       }
+      $uniqueDates = array_unique($uniqueDates);
     }
 
     $result = $connection->query("SELECT Likes FROM comments WHERE Name = '{$chosenUser['nick']}' AND Is_Verified = 1");
@@ -142,6 +145,22 @@
             <span><?php echo sizeof($userComments) ?></span>
           </div>
       </div>
+      <div class="activity-calendar-outer">
+        <div class="activity-calendar-inner">
+          <h3>Kalendarz aktywności</h3>
+            <p id="calendar-time-range"></p>
+            <div id="calendar"
+             data-active-dates="<?php for ($i=0; $i < sizeof($uniqueDates) ; $i++) {
+                                  echo $uniqueDates[$i]." ";
+                                } ?>">
+            </div>
+            <div class="buttons-group">
+                <button type="button" id="nextMonthBtn">Następne</button>
+                <button type="button" id="prevMonthBtn">Poprzednie</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <div id="latest-workouts">
         <?php
@@ -155,7 +174,7 @@
              }
           echo '<a class="post-link" href="post.php?id='.$post['ID'].'">'.$post['Date'].'</a>
             <img src="img/characters/'.strtolower($post['Owner']).'/main.jpg" alt="Imie">
-            <h3>'.$post['Owner'].'</h3>
+            <a class="post-owner-link" href="profile.php?id='.$post['Owner_ID'].'">'.$post['Owner'].'</a>
             <div class = "post-stat-box">
                  <p>Typ treningu <br> <span class = "post-stat-type">'.$post['Type'].'</span> </p>
                  <p>Czas <br> <span class = "post-stat-time">'.$post['Time_min'].'</span> </p>
@@ -210,5 +229,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/activityCalendar.js"></script>
   </body>
 </html>
